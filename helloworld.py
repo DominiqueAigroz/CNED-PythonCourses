@@ -1,11 +1,13 @@
 # une variable entière
-#i = 0
+i = 0
 # une chaîne de caractères
 s = "hello i'm s"
+# un caractère
+c = 'a'
 # une variable décimale
 f = 10.2
 # un boolean
-b = True;
+b = True
 
 for i in range(10):
     f = f * (i+1)
