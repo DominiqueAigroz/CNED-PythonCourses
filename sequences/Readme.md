@@ -41,6 +41,63 @@ Il existe, comme dans tous les langages de programmation des opérateurs :
 \+ - / * %  
 \=  
 \==  
+\!=  
 </code>
 
 ![Operators](/images/sequences/builtintypes/operators.png)
+
+```python
+# assignation
+numb1 = 10
+# add 100 to numb1
+numb2 = numb1 + 100
+# is equal
+bEq = numb1 == numb2
+# is different
+bNEq = numb1 != numb2
+```
+
+
+
+## Array
+
+Les tableaux permettent de stocker plusieurs éléments de types:  integer, string, char, objet, ...  
+Les tableaux sont indéxés de 0 à n
+
+```python
+# an array of string
+words = ['hello', 'world', '!!!!']
+# access the first element of the array
+s = words[0]
+print(s)
+# output
+# hello
+```
+
+![Operators](/images/sequences/array/array.png)
+
+
+## Collections
+
+Les collections ne sont pas des tableaux, même si elles permettent de stocker des données.  
+Les éléments des tableaux sont indexés de 0..n alors que les collections gèrent les éléments avec un algorithme interne.  
+Les collections sont du type **[iterable]**, ce qui signifie qu'on peut parcourir ses éléments
+
+### list
+C'est une séquence d'éléments  
+
+```python
+# an empty list
+lst1 = list([])
+# a list with 3 caracters
+lst2 = list('abc')
+# returns ['a', 'b', 'c']
+
+# a list with 3 numbers
+lst3 = list((1,2,3))
+# returns [1, 2, 3]
+```
+
+### dict
+
+
