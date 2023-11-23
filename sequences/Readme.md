@@ -100,4 +100,4 @@ lst3 = list((1,2,3))
 
 ### dict
 
-
+dicta = {'one': 1, 'two': 2, 'three': 3}
