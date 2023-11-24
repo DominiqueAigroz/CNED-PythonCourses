@@ -40,8 +40,8 @@ dictb['two'] += 10
 print(dictb['two'])
 
 # iterate keys in collection
-for v in dictb:
-    print(v)
+for k in dictb:
+    print(k)
 
 # iterate keys and values in collection
 for k, v in dictb.items():
@@ -51,7 +51,7 @@ for k, v in dictb.items():
 for v in dictb.values():
     print('Value='+str(v))
 
-# iterate values in collection
+# iterate keys in collection
 for k in dictb.keys():
     print('Keys='+k)
 

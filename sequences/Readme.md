@@ -100,4 +100,45 @@ lst3 = list((1,2,3))
 
 ### dict
 
+Contient des éléments identifiés par une clé et contenant une valeur  
+'one' c'est la clé  
+1 c'est la valeur
+
+```python
+# create a dictionary with three items:
+# 'one' -> 1
+# 'two' -> 2
+# 'three' -> 3
 dicta = {'one': 1, 'two': 2, 'three': 3}
+
+# run through 
+# iterate keys in collection
+for k in dicta:
+    print(k)
+
+# iterate keys and values in collection
+for k, v in dicta.items():
+    print('Key='+k+' value='+str(v))
+
+# iterate values in collection
+for v in dicta.values():
+    print('Value='+str(v))
+
+# iterate keys in collection
+for k in dicta.keys():
+    print('Keys='+k)
+```
+
+### tuple
+
+La collection tuple est une collection immutable.  
+Cela signifie que c'est une collection dont les éléments ne peuvent être modifiés.  
+
+```python
+# create a tuple collection with 1, 2, 3 and 4 numbers
+t1 = tuple((1,2,3,4))
+print(t1)
+# try to assign a new value to first item
+t1[0] = 10 # ERROR at runtime !!!!!
+print(t1)
+```
