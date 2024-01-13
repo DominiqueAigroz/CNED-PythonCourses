@@ -293,3 +293,228 @@ On assigne le résultat à la variable **n**.
 # Assign its returned value to n var.
 n = sumNumber(3,5)
 ```
+
+
+## Classes
+
+Les classes sont qualifiés également d'objets  
+Comme dans les langages Orienté Objets tels que Java, C++, C#, ... le mot clé **class** permet de définir un objet.  
+
+[Voir documentation Phyton](https://docs.python.org/3/tutorial/classes.html)
+
+[Voir code en exemple](/sequences/classes/object.py)
+
+Les classes possèdent des variables membres qui permettent de conserver l'état de l'objet créé.  
+Les classes possèdent également des méthodes (fonctions) qui permettent d'intéragir avec l'objet.  
+
+Les variables membres ont trois niveaux d'accessibilité :  
+- publique
+- protégé
+- privée
+
+En notation UML on utilise la notation :  
+\+ pour publique  (public)  
+\# pour protégé  (protected)  
+\- pour privé  (private)  
+
+
+Prenons l'exemple d'une classe rectangle
+
+![Classe rectangle](/images/sequences/classes/Rect-Object-Python.png)
+
+
+Définition de notre classe rectangle  
+```python
+# Class managing a rectangle
+class Rect:
+```
+  
+Ajout des variables membres qui caractérise notre rectangle  
+Ici, en mode d'accéssibilité publique  
+
+```python
+# Class managing a rectangle
+class Rect:
+    # public members 
+    width = 0
+    height = 0
+    top = 0
+    left = 0
+```
+
+
+Ajout de deux méthodes qui permettent de manipuler la largeur de notre rectangle  
+Attention, il faut passer **self** comme premier paramètre afin d'accéder à notre objet  
+
+```python
+# Class managing a rectangle
+class Rect:
+    # Gets the rectangle's width
+    def getWidth(self):
+        return self._width
+    # Sets the rectangle's width
+    def setWidth(self, w):
+        self._width = w
+```
+
+Création d'un nouvel objet de type Rect  
+
+```python
+# Create a new object r1 Rectangle (Rect)
+r1 = Rect()
+# Assigns its width
+r1.setWidth(100)
+n = r1.getWidth()
+print(n)
+# output
+# 200
+```
+
+Comme on peut le voir, le premier paramètre **self** n'est passé en paramètre.  
+C'est lui qui l'assigne en interne.  
+
+Il existe une méthode que l'on appelle constructeur, qui est automatiquement appelé lors de la création d'un nouvel objet.  
+On appelle cela, instantiation d'un objet. C'est la création d'un nouvel objet à partir de notre **class**.  
+Le constructeur **__init__** en Python.  
+
+```python
+# Class managing a rectangle
+class Rect:
+    # Ctor
+    def __init__(self) -> None:
+        self.width = 0
+        self.height = 0
+        self.top = 0
+        self.left = 0
+```
+
+Maintenant on peut définir nos variables membres comme étant privée afin d'empêcher l'accès direct.  
+En Python on utilise le _ :  
+aucun **_** pour publique  (public)  
+\_ un seul **_** pour protégé  (protected)  
+\__ deux **_** pour privé  (private)  
+
+Notre classe avec les variables membres en privée  
+```python
+# Class managing a rectangle
+class Rect:
+    # private members 
+    __width = 0
+    __height = 0
+    __top = 0
+    __left = 0
+```
+
+On peut spécifier des paramètres à notre constructeur afin d'initialiser nos variables membres à la création de l'objet.  
+
+```python
+# Class managing a rectangle
+class Rect:
+    # private members (double underscore)
+    __width = 0
+    __height = 0
+    __top = 0
+    __left = 0
+    # Ctor
+    def __init__(self, InTop, InLeft, InWidth, InHeight) -> None:
+        self.__width = InWidth
+        self.__height = InHeight
+        self.__top = InTop
+        self.__left = InLeft
+```
+
+On ne pourra plus créer un nouvel objet de type Rect sans spécifier les paramètres  
+
+```python
+# Create a new object r1 Rectangle (Rect)
+r1 = Rect() # ERR
+
+# Create a new object r1 Rectangle (Rect)
+r1 = Rect(10,20,100,200) # Valide
+```
+
+Si on veut pouvoir créer notre objet avec ou sans paramètre, alors on utiliser la notation des paramètres par défaut.  
+
+```python
+# Class managing a rectangle
+class Rect:
+    # private members (double underscore)
+    __width = 0
+    __height = 0
+    __top = 0
+    __left = 0
+    # Ctor
+    def __init__(self, InTop=0, InLeft=0, InWidth=0, InHeight=0) -> None:
+        self.__width = InWidth
+        self.__height = InHeight
+        self.__top = InTop
+        self.__left = InLeft
+```
+
+Maintenant on peut créer un nouvel objet de type Rect sans spécifier les paramètres  
+
+```python
+# Create a new object r1 Rectangle (Rect)
+r1 = Rect() # equivalent Rect(0,0,0,0)
+
+# Create a new object r2 Rectangle (Rect)
+r2 = Rect(10,20,100,200) 
+
+# Create a new object r2 Rectangle (Rect)
+r3 = Rect(10,20) # equivalent Rect(10,20,0,0)
+```
+
+### Héritage
+On peut hériter d'une classe existante afin d'ajouter des fonctionnalités.  
+Prenons l'exemple d'un rectangle arrondi qui dérive de notre classe rectangle.  
+Finalement, notre rectangle arrondi implémente un rectangle et ajoute la fonctionnalité d'avoir des coins arrondis matéralisés par un radius.  
+
+![Classe rectangle arrondi](/images/sequences/classes/RoundRect-Object-Python.png)
+
+
+```python
+# Class managing a rounded rectangle deriving from our rectangle
+class RoundRect(Rect):
+    # private members (double underscore)
+    __radius = 0
+```
+
+Les variables membres de notre classe Rect sont du type privée et ne peuvent accédées par notre classe RoundRect.  
+Afin qu'on puisse les accéder, on va changer le type d'accès aux variables membres de Rect et les mettre en protected.  
+
+
+```python
+# Class managing a rectangle
+class Rect:
+    # protected members (single underscore)
+    _width = 0
+    _height = 0
+    _top = 0
+    _left = 0
+    # Ctor
+    def __init__(self, InTop=0, InLeft=0, InWidth=0, InHeight=0) -> None:
+        self._width = InWidth
+        self._height = InHeight
+        self._top = InTop
+        self._left = InLeft
+```
+
+Ainsi on pourra les accéder depuis notre classe RoundRect.  
+
+
+```python
+# Class managing a rounded rectangle deriving from our rectangle
+class RoundRect(Rect):
+    # private members (double underscore)
+    __radius = 0
+
+    # Ctor
+    def __init__(self, InTop=0, InLeft=0, InWidth=0, InHeight=0, InRadius=0) -> None:
+        self._width = InWidth
+        self._height = InHeight
+        self._top = InTop
+        self._left = InLeft
+        self.__radius = InRadius
+```
+
+Le radius peut rester private car pour l'instant on n'a pas prévu de pouvoir dériver de RoundRect.  
