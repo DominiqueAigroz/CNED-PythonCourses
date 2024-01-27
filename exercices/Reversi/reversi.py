@@ -1,45 +1,38 @@
-# Create and initialize the array for reversi
+from functions import *
+
+# The reversi board sizes
 colMax = 8 # count of column
 rowMax = 8 # count of row
 
-board = []
-for idx in range((colMax*rowMax)-1):
-    board.append('E')
-print(board)
+# Create and initialize the array for reversi
+#board = initializeBoard(colMax, rowMax)
 
-# Simulate input
-col = 'c'
-row = 2
-# Columns starting a
-colIndex = ord(col) - ord('a')
-print(colIndex)
-# Rows starting 1
-rowIndex = row - 1
-# Calculate the index within our array
-index = (rowIndex * colMax) + colIndex
-# Test
-board[index] = 'W'
-print(board)
+#initializeGame(board,colMax)
 
-col = 'b'
-row = 3
-colIndex = ord(col) - ord('a')
-rowIndex = row - 1
-index = (rowIndex * colMax) + colIndex
-# Test
-board[index] = 'B'
-print(board)
+# In one call, I initialize the board and initialize
+board = initializeGame2(colMax, rowMax)
 
-# Get state
-col = 'c'
-row = 4
-colIndex = ord(col) - ord('a')
-rowIndex = row - 1
-index = (rowIndex * colMax) + colIndex
-# Test
-print(board[index])
+# Without a variable
+while True:
+    col = input('Colonne (a-h): ')
+    if col < 'a' or col > 'h':
+        print('Veuillez tapez une colonne entre a et h')
+    else:
+        break
 
-# Make functions for :
-# - Initialize the board
-# - Set a state ('E', 'W', 'B') to a column / row
-# - Get a state from a column / row
+# With a variable
+bValid = False
+while bValid == False:
+    line = int(input('Ligne (1-8): '))
+    if line < 1 or line > 8:
+        print('Veuillez tapez une ligne entre 1 et 8')
+    else:
+        bValid = True
+
+if isEmpty(board,col,line,colMax):
+    print('is empty')
+elif isBlack(board,col,line,colMax):
+    print('is black')
+elif isWhite(board,col,line,colMax):
+    print('is white')
+
